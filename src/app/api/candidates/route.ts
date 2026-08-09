@@ -11,10 +11,15 @@ export async function GET() {
     const candidatesData = JSON.parse(fs.readFileSync(candidatesPath, 'utf8'));
     const curriculumData = JSON.parse(fs.readFileSync(curriculumPath, 'utf8'));
 
-    // Fetch session statuses from SQLite database to sync Candidate Matrix status dynamically
-    const sessions = await prisma.session.findMany({
-      select: { candidateId: true, status: true }
-    });
+    // Fetch session statuses from database to sync Candidate Matrix status dynamically
+    let sessions: any[] = [];
+    try {
+      sessions = await prisma.session.findMany({
+        select: { candidateId: true, status: true }
+      });
+    } catch (dbError) {
+      console.warn('[Candidates API] Database or session table not found. Defaulting status to NOT_STARTED.', dbError);
+    }
 
     const sessionMap = new Map(sessions.map(s => [s.candidateId, s.status]));
 
