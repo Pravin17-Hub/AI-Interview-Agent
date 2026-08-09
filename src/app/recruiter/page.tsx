@@ -517,14 +517,15 @@ export default function RecruiterDashboard() {
                       const dayNumber = idx + 1;
                       const mission = selectedCandidate.missions.find((m: any) => m.day === dayNumber);
                       
-                      let cellBg = 'rgba(255,255,255,0.03)';
-                      let cellBorder = 'rgba(255,255,255,0.08)';
+                      let cellBg = 'rgba(128, 128, 128, 0.05)';
+                      let cellBorder = 'var(--border-color)';
                       let tooltipTitle = `Day ${dayNumber}: No mission details.`;
 
                       if (mission) {
                         tooltipTitle = `Day ${dayNumber}: ${mission.title}`;
                         if (mission.skipped) {
-                          cellBg = 'rgba(255, 255, 255, 0.1)';
+                          cellBg = 'rgba(128, 128, 128, 0.15)';
+                          cellBorder = 'rgba(128, 128, 128, 0.3)';
                           tooltipTitle += ' (Skipped)';
                         } else if (mission.passed) {
                           if (mission.attempts === 1) {
@@ -569,19 +570,19 @@ export default function RecruiterDashboard() {
                   {/* Legend */}
                   <div style={{ display: 'flex', gap: '16px', fontSize: '11px', color: 'hsl(var(--text-muted))', marginTop: '12px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <div style={{ width: '10px', height: '10px', background: 'hsla(145, 75%, 45%, 0.4)', borderRadius: '2px' }}></div>
+                      <div style={{ width: '10px', height: '10px', background: 'hsla(145, 75%, 45%, 0.4)', border: '1px solid hsla(145, 75%, 45%, 0.6)', borderRadius: '2px' }}></div>
                       <span>Passed 1st Try</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <div style={{ width: '10px', height: '10px', background: 'hsla(35, 90%, 55%, 0.3)', borderRadius: '2px' }}></div>
+                      <div style={{ width: '10px', height: '10px', background: 'hsla(35, 90%, 55%, 0.3)', border: '1px solid hsla(35, 90%, 55%, 0.5)', borderRadius: '2px' }}></div>
                       <span>Passed &gt; 1 Try</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <div style={{ width: '10px', height: '10px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px' }}></div>
+                      <div style={{ width: '10px', height: '10px', background: 'rgba(128, 128, 128, 0.15)', border: '1px solid rgba(128, 128, 128, 0.3)', borderRadius: '2px' }}></div>
                       <span>Skipped</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <div style={{ width: '10px', height: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '2px' }}></div>
+                      <div style={{ width: '10px', height: '10px', background: 'rgba(128, 128, 128, 0.05)', border: '1px solid var(--border-color)', borderRadius: '2px' }}></div>
                       <span>Unlisted</span>
                     </div>
                   </div>
