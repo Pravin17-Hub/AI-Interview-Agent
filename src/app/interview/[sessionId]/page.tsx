@@ -690,7 +690,29 @@ export default function InterviewRoom() {
               {/* Message turns scrolling area */}
               <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '24px', paddingRight: '12px', marginBottom: '16px' }}>
                 {messages.map((msg, idx) => {
-                  if (msg.role === 'system') return null;
+                  if (msg.role === 'system') {
+                    return (
+                      <div 
+                        key={idx}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          background: 'rgba(239, 68, 68, 0.08)',
+                          border: '1px solid rgba(239, 68, 68, 0.2)',
+                          borderRadius: '8px',
+                          color: 'hsl(var(--status-error))',
+                          fontSize: '13px',
+                          lineHeight: '1.5',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px'
+                        }}
+                      >
+                        <ShieldAlert size={14} />
+                        <span>{msg.content}</span>
+                      </div>
+                    );
+                  }
                   const isAssistant = msg.role === 'assistant';
                   
                   return (
