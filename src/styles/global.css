@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: hsl(var(--bg-primary));
+  background-image: radial-gradient(at 0% 0%, hsla(0, 0%, 50%, 0.05) 0px, transparent 55%),
+                    radial-gradient(at 100% 0%, hsla(0, 0%, 50%, 0.05) 0px, transparent 55%),
+                    radial-gradient(at 50% 100%, hsla(0, 0%, 50%, 0.03) 0px, transparent 55%);
+  background-attachment: fixed;
+  color: hsl(var(--text-primary));
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.3);
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 20px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.01);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* High-contrast Monochrome Hover effects */
+@media (prefers-color-scheme: dark) {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.02);
+  }
+}
+.glass-card:hover {
+  background: var(--glass-bg);
+  border-color: hsl(var(--text-primary));
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Grayscale Borders */
+.neon-border-purple {
+  position: relative;
+}
+.neon-border-purple::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, hsl(var(--text-primary)), hsl(var(--text-muted)));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.neon-border-teal {
+  position: relative;
+}
+.neon-border-teal::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, hsl(var(--text-muted)), hsl(var(--text-primary)));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Monochrome Glow dot */
+.glow-dot-teal {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: hsl(var(--text-primary));
+  box-shadow: 0 0 8px hsl(var(--text-primary));
+}
+
+.pulse-slow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+/* Grayscale Waveform for Audio */
+.wave-container {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+}
+.wave-bar {
+  width: 3px;
+  height: 100%;
+  background-color: hsl(var(--text-primary));
+  border-radius: 1.5px;
+  animation: bounceWave 1.2s infinite ease-in-out;
+}
+.wave-bar:nth-child(2) { animation-delay: 0.2s; }
+.wave-bar:nth-child(3) { animation-delay: 0.4s; }
+.wave-bar:nth-child(4) { animation-delay: 0.1s; }
+.wave-bar:nth-child(5) { animation-delay: 0.3s; }
+
+@keyframes bounceWave {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Grayscale thinking indicator */
+.thinking-dot {
+  width: 6px;
+  height: 6px;
+  background-color: hsl(var(--text-primary));
+  border-radius: 50%;
+  animation: bounceDot 1.4s infinite ease-in-out both;
+}
+.thinking-dot:nth-child(1) { animation-delay: -0.32s; }
+.thinking-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounceDot {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 40% { 
+    transform: scale(1.0);
+  }
+}
